@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<style>
+      .d-flex {
+        position: sticky;
+        top: 0; /* Sticks to the top of the viewport */
+        z-index: 1000; /* Ensures it stays above other elements */
+        background-color: white; /* Add a background to avoid content overlap */
+        padding: 10px; /* Optional: adjust padding as needed */
+      }
+	  
+	  span{
+	  
+		color: red;
+	  }
+	  
+
+      .fnt-label {
+        text-align: right;        
+        font-family: "Battambang";
+      }
+	  
+      .fnt-select {      
+        font-family: "Battambang";
+      }
+	  
+	  select.note::after{
+		content:" Yes";
+	  }
+	  
+	  
+	  	  
+	  label.note::after{
+		content:"*";
+		color:red;
+	  }
+	  
+	  
+	</style>
+  
+  </head>
+  <body>
+	
+	<div class="cont1" >
+	<!-- <button type="button" class="btn-close btn-close-white" aria-label="Close"></button> -->
+	
+		<fieldset class="text-bg-light">
+			<form id="contactForm" style="margin-left:40px; margin-right:20px; font-size:16px" onsubmit="submitData(event)">
+			<div class="d-flex" style="position: sticky">
+			  <div class="p-2 flex-grow-1">
+          <h4> IPP Resquest</h4>
+
+        </div>
+
+        <div class="p-2"><button type="button" class="btn-close" aria-label="Close"></button></div>
+			</div><hr>
+<!-- Zone -->
+<div class="row mb-3">
+    <label for="inputZone" class="col-sm-2 col-form-label fnt-label note">តំបន់/Zone <span>* </span></label>
+    <div class="col-sm-3">
+        <select
+            name="ReqZone"
+            class="form-select fnt-select note"
+            id="zoneSelect"
+            required
+            aria-label="select example"
+            aria-describedby="validationServer03Feedback"
+            > ::before
+			
+            <option value="">--ជ្រើសរើស--</option>
+            <option value="PNH">PNH_Zone</option>
+            <option value="SAN">SAN_Zone</option>
+            <option value="KKD">KKD_Zone</option>
+            <option value="SAT">SAT_Zone</option>
+            <option value="KPT">KPT_Zone</option>
+            <option value="SNV">SNV_Zone</option>
+            <option value="BTB">BTB_Zone</option>
+            <option value="CSO">CSO_Office</option>
+        </select>
+        <div class="invalid-feedback">Example invalid select feedback</div>
+    </div>
+</div>
+
+<!-- Branch -->
+<div class="row mb-3">
+    <label for="inputBranch" class="col-sm-2 col-form-label fnt-label">គម្រោង/Project <span>* </span></label>
+    <div class="col-sm-3">
+        <select
+            name="ReqBranch"
+            class="form-select"
+            id="branchSelect"
+            required
+            aria-label="select example"
+            aria-describedby="validationServer03Feedback"
+        >
+            <option value="">--ជ្រើសរើស--</option>
+        </select>
+        <div class="invalid-feedback">Example invalid select feedback</div>
+    </div>
+</div>
+			
+			  <div class="row mb-3">
+				<label for="inputEmail3" class="col-sm-2 col-form-label fnt-label">ចំនួនទឹកប្រាក់/Amount</label>
+				<div class="col-sm-3">
+				<input name="ReqAmt" type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" required="" oninput="formatCurrency(this)">
+				</div>
+			  </div>
+
+
+        <!-- Currency -->
+			  <div class="row mb-3">
+					<label for="inputEmail3" class="col-sm-2 col-form-label fnt-label">ប្រភេទរូបិយប័ណ្ឌ/Currency</label>
+					<div class="col-sm-3">
+					    <select name="ReqCurr" class="form-select" required aria-label="select example" aria-describedby="validationServer03Feedback" required="">
+						  <option value="">--ជ្រើសរើស--</option>
+						  <option value="USD">USD</option>
+						  <option value="KHR">KHR</option>
+					</select>
+					<div class="invalid-feedback">Example invalid select feedback</div>
+					</div>
+			  </div>
+
+
+        <!-- Source of Fund -->
+			  <div class="row mb-3">
+					<label for="inputEmail3" class="col-sm-2 col-form-label fnt-label">ប្រភេទគនណី/Account Type</label>
+					<div class="col-sm-3">
+					    <select name="AcctType"class="form-select" required aria-label="select example" aria-describedby="validationServer03Feedback" required="">
+						  <option value="">--ជ្រើសរើស--</option>
+						  <option value="IPP">IPP_គម្រោង</option>
+						  <option value="IPP-QF">IPP_Queen</option>
+					</select>
+					<div class="invalid-feedback">Example invalid select feedback</div>
+					</div>
+			  </div>
+			  
+			  <div class="row mb-3">
+					<label for="inputEmail3" class="col-sm-2 col-form-label fnt-label">កាលបរិច្ឆេទ/Withdraw Date</label>
+					<div class="col-sm-3">
+					<input name="ReqDate" type="Date" class="form-control" aria-describedby="validationServer03Feedback" required="" id="inputEmail3">
+					</div>
+			  </div>
+
+			  
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label fnt-label">កំណត់សម្គាល់ផ្សេងៗ/Note</label>
+            <div class="col-sm-3">
+                <textarea class="form-control" name="ReqDescr" id="inputEmail3" rows="1"></textarea>
+            </div>
+        </div>  
+			  			  
+			<hr>
+          <div class="d-flex">
+            <div class="p-2 flex-grow-1">
+              <button class="btn btn-primary" type="submit">Send</button>
+
+              <!-- Progress Status -->
+
+              <!-- <div class="progress d-none" id="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                      aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                      style="width: 0%"></div>
+              </div> -->
+
+              <!-- Success Message -->
+              <!-- <div style="width:400px; color:bule, background:transparent" id="success-message" class="alert alert-success d-none" role="alert">
+                    Sending Successfully!
+              </div> -->
+            </div> 
+          </div>
+      </form><br>
+
+              <!-- Message Box Overlay -->
+              <div id="messageBoxOverlay" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-flex align-items-center justify-content-center">
+                  <div class="bg-white p-4 rounded shadow position-relative" style="max-width: 400px; width: 100%;">
+                      <!-- Close Button -->
+                      <button type="button" class="btn-close position-absolute top-0 end-0 mt-2 me-2" aria-label="Close" onclick="closeMessageBox()"></button>
+                      
+                      <!-- Progress Status -->
+						<div class="progress d-none" id="progress">
+                          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                              aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                              style="width: 0%"></div>
+						</div>
+
+                      <!-- Success Message -->
+					  
+					  
+						<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+						  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+						  </symbol>
+
+						</svg>
+
+								 
+						  
+						<div id="success-message" class="alert alert-success d-none mt-3" role="alert">
+							  Sending Successfully!
+						</div>
+					
+                  </div>
+              </div>
+
+		</fieldset>
+		
+	</div>
+			
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  
+
+  <!-- Scripts Communicate HTML-->
+
+        <script src="https://cdn.metroui.org.ua/current/metro.js"></script>
+    <script>
+
+            function submitData(e) {
+                e.preventDefault();
+
+                // Get elements
+                const overlay = document.getElementById("messageBoxOverlay");
+                const progress = document.getElementById("progress");
+                const progressBar = progress.querySelector(".progress-bar");
+                const successMessage = document.getElementById("success-message");
+                const form = document.getElementById("contactForm");
+
+                // Show the overlay and reset the progress bar
+                overlay.classList.remove("d-none");
+                progress.classList.remove("d-none");
+                successMessage.classList.add("d-none");
+                progressBar.style.width = "0%";
+                progressBar.setAttribute("aria-valuenow", "0");
+
+                // Simulate progress increment
+                let progressValue = 0;
+                const interval = setInterval(() => {
+                    if (progressValue < 100) {
+                        progressValue += 10; // Adjust the increment value as needed
+                        progressBar.style.width = progressValue + "%";
+                        progressBar.setAttribute("aria-valuenow", progressValue);
+                    }
+                }, 100); // Adjust the interval time as needed
+
+                // Collect form data
+                const formData = new FormData(form);
+                const data = {
+                    ReqZone: formData.get("ReqZone"),
+                    ReqBranch: formData.get("ReqBranch"),
+                    ReqAmt: formData.get("ReqAmt"),
+                    ReqCurr: formData.get("ReqCurr"),
+                    AcctType: formData.get("AcctType"),
+                    ReqDate: formData.get("ReqDate"),
+                    ReqDescr: formData.get("ReqDescr")
+                };
+
+                // Call Google Apps Script function
+                google.script.run
+                    .withSuccessHandler(() => {
+                        // Stop the progress animation
+                        clearInterval(interval);
+                        progressBar.style.width = "100%";
+                        progressBar.setAttribute("aria-valuenow", "100");
+
+                        // Hide the progress bar and show the success message after a short delay
+                        setTimeout(() => {
+                            progress.classList.add("d-none");
+                            successMessage.classList.remove("d-none");
+                            form.reset(); // Reset the form
+                        }, 500); // Delay before showing the success message
+                    })
+                    .withFailureHandler(() => {
+                        // Stop the progress animation
+                        clearInterval(interval);
+                        progress.classList.add("d-none");
+                        alert("Failed to add data to Google Sheets. Please try again.");
+                    })
+                    .addDataToSheet(data);
+            }
+
+
+            function closeMessageBox() {
+            const overlay = document.getElementById("messageBoxOverlay");
+            overlay.classList.add("d-none"); // Hide the overlay
+        }
+                 
+    </script>
+
+
+
+    <!-- Format currency -->
+      <script>
+            function formatCurrency(input) {
+                // Remove any non-numeric characters except the decimal point
+                let value = input.value.replace(/[^0-9.]/g, '');
+
+                // Split the value into whole number and decimal parts
+                let parts = value.split('.');
+                
+                // Keep only the first two decimal digits
+                if (parts[1]) {
+                    parts[1] = parts[1].substring(0, 2);
+                }
+
+                // Format the whole number part with commas
+                parts[0] = new Intl.NumberFormat().format(parts[0]);
+
+                // Combine whole number and decimal parts
+                input.value = parts.join('.');
+      }
+      </script>
+
+
+    <!-- Define branches for each zone -->
+      <script>
+
+            const branchesByZone = {
+                PNH: [
+                    { value: "PNH", text: "PNH-Phnom Penh" },
+                    { value: "CBA", text: "CBA-Chbar Ampov" },
+                    { value: "DKR", text: "DKR-Dangkor" },
+                    { value: "PSC", text: "PSC_Choam Chao" },
+                    { value: "PPN", text: "PPN_Prek Phnov" },
+                    { value: "KTL", text: "KTL_Kampong Tralach" },
+                ],
+                SAN: [
+                    { value: "BTI", text: "BTI_Bati" },
+                    { value: "BSD", text: "BSD_Borsedth" },
+                    { value: "PKB", text: "PKB_Prekabas" },
+                    { value: "TTG", text: "TTG_Tang Tong" },
+                    { value: "TTY", text: "TTY_Tang Yao" },
+                ],
+
+                KKD: [
+                    { value: "KKD", text: "KKD_Khsach Kandal" },
+                    { value: "SNG", text: "SNG_Suong" },
+                    { value: "SST", text: "SST_Srey Santhor" },
+                ],        
+
+                SAT: [
+                    { value: "CHP", text: "CHP_Chiphou" },
+                    { value: "KAD", text: "KAD_Kar Nadeuk" },
+                    { value: "PMR", text: "NL_Neak Noeung" },
+                    { value: "SAT", text: "SAT_Svay Anthor" },
+                    { value: "SVR", text: "SVR_Svay Rieng" },
+                ], 
+
+                KPT: [
+                    { value: "AKC", text: "AKC_Angkor Chey" },
+                    { value: "CHK", text: "CHK_Chhuok" },
+                    { value: "KPT", text: "KPT_Kamport" },
+                    { value: "KTR", text: "KTR_Kampong Trach" },
+                    { value: "KMP", text: "KMP_KPCA Kamport" },
+                ], 
+
+                SNV: [
+                    { value: "PRN", text: "PRN_Prey Nub" },
+                    { value: "SAB", text: "SAB_Srey Ambel" },
+                    { value: "SNV", text: "SNV_Sihanu Vill" },
+
+                ],
+
+                BTB: [
+                    { value: "BTB", text: "BTB_Battambang" },
+                    { value: "BVL", text: "BVL_Bovel" },
+
+                ], 
+
+                CSO: [
+                    { value: "SUB", text: "CSO_Customer Service Office" },
+
+                ], 
+
+
+                // Add other zones and branches as needed
+            };
+
+            // Get references to the select elements
+            const zoneSelect = document.getElementById("zoneSelect");
+            const branchSelect = document.getElementById("branchSelect");
+
+            // Function to update branch options based on selected zone
+            zoneSelect.addEventListener("change", function () {
+                const selectedZone = zoneSelect.value;
+                branchSelect.innerHTML = '<option value="">--ជ្រើសរើស--</option>'; // Reset branch options
+
+                if (branchesByZone[selectedZone]) {
+                    branchesByZone[selectedZone].forEach((branch) => {
+                        const option = document.createElement("option");
+                        option.value = branch.value;
+                        option.textContent = branch.text;
+                        branchSelect.appendChild(option);
+                    });
+                }
+            });
+      </script>
+
+
+  </body>
+</html>
